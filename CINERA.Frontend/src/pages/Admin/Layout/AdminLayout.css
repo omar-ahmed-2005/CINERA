@@ -1,0 +1,241 @@
+.admin-layout {
+  min-height: 100vh;
+
+  display: flex;
+
+  background: #0b0b0f;
+
+  color: #fff;
+}
+
+/* ============================== */
+/* SIDEBAR */
+/* ============================== */
+
+.admin-sidebar {
+  width: 250px;
+
+  min-height: 100vh;
+
+  padding: 28px 16px;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  border-right: 1px solid #24242d;
+
+  background: #101015;
+
+  z-index: 100;
+}
+
+/* ============================== */
+/* LOGO */
+/* ============================== */
+
+.admin-logo {
+  padding: 5px 12px 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  border-bottom: 1px solid #22222a;
+}
+
+.admin-logo span {
+  color: #fff;
+
+  font-size: 23px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.admin-logo small {
+  color: #d4af37;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+/* ============================== */
+/* NAVIGATION */
+/* ============================== */
+
+.admin-nav {
+  padding-top: 28px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.admin-nav-label {
+  margin: 0 12px 10px;
+
+  color: #555;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.admin-nav-link,
+.admin-bottom-link,
+.admin-logout {
+  width: 100%;
+
+  min-height: 45px;
+
+  padding: 0 13px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #777;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  text-decoration: none;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.admin-nav-link:hover,
+.admin-bottom-link:hover {
+  background: #19191f;
+
+  color: #fff;
+}
+
+.admin-nav-link.active {
+  background: #1d1c17;
+
+  color: #d4af37;
+}
+
+.admin-nav-link.active svg {
+  color: #d4af37;
+}
+
+/* ============================== */
+/* BOTTOM */
+/* ============================== */
+
+.admin-sidebar-bottom {
+  margin-top: auto;
+
+  padding-top: 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  border-top: 1px solid #22222a;
+}
+
+.admin-logout:hover {
+  background: rgba(220, 80, 80, 0.08);
+
+  color: #e57373;
+}
+
+/* ============================== */
+/* CONTENT */
+/* ============================== */
+
+.admin-content {
+  width: calc(100% - 250px);
+
+  min-height: 100vh;
+
+  margin-left: 250px;
+}
+
+/* ============================== */
+/* RESPONSIVE */
+/* ============================== */
+
+@media (max-width: 800px) {
+  .admin-sidebar {
+    width: 75px;
+
+    padding: 22px 10px;
+  }
+
+  .admin-logo {
+    align-items: center;
+
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .admin-logo span {
+    font-size: 17px;
+  }
+
+  .admin-logo small {
+    display: none;
+  }
+
+  .admin-nav-label {
+    display: none;
+  }
+
+  .admin-nav-link,
+  .admin-bottom-link,
+  .admin-logout {
+    justify-content: center;
+
+    padding: 0;
+  }
+
+  .admin-nav-link span,
+  .admin-bottom-link span,
+  .admin-logout span {
+    display: none;
+  }
+
+  .admin-content {
+    width: calc(100% - 75px);
+
+    margin-left: 75px;
+  }
+}
