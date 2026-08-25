@@ -1,0 +1,6 @@
+@CINERA_HostAddress = http://localhost:5274
+
+GET {{CINERA_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

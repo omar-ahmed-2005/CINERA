@@ -1,0 +1,297 @@
+.genre-page {
+  min-height: 100vh;
+  padding: 120px 60px 60px;
+  background: #0b0b0f;
+  color: #fff;
+}
+
+.genre-page-header {
+  max-width: 1400px;
+  margin: 0 auto 45px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.genre-back-btn {
+  margin-top: 8px;
+
+  padding: 10px 16px;
+
+  border: 1px solid #292932;
+  border-radius: 8px;
+
+  background: #15151c;
+  color: #aaa;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.genre-back-btn:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+.genre-label {
+  margin: 0 0 8px;
+
+  color: #d4af37;
+
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.genre-page-header h1 {
+  margin: 0;
+
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.genre-count {
+  margin-top: 8px;
+
+  color: #777;
+  font-size: 14px;
+}
+
+/* ============================== */
+/* MOVIES */
+/* ============================== */
+
+.genre-movie-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+/* ============================== */
+/* LOADING */
+/* ============================== */
+
+.genre-loading {
+  min-height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.genre-loading h2 {
+  margin: 0 0 10px;
+
+  font-size: 28px;
+}
+
+.genre-loading p {
+  margin: 0;
+
+  color: #777;
+}
+
+/* ============================== */
+/* EMPTY */
+/* ============================== */
+
+.genre-empty {
+  max-width: 1400px;
+
+  margin: 100px auto;
+
+  text-align: center;
+}
+
+.genre-empty h2 {
+  margin-bottom: 10px;
+
+  font-size: 28px;
+}
+
+.genre-empty p {
+  color: #777;
+}
+
+/* ============================== */
+/* RESPONSIVE */
+/* ============================== */
+
+@media (max-width: 1400px) {
+  .genre-movie-grid {
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1150px) {
+  .genre-movie-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .genre-page {
+    padding: 110px 25px 40px;
+  }
+
+  .genre-movie-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .genre-page-header h1 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 600px) {
+  .genre-movie-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .genre-page-header {
+    gap: 15px;
+  }
+
+  .genre-page-header h1 {
+    font-size: 28px;
+  }
+}
+.genre-pagination {
+  max-width: 1400px;
+
+  margin: 45px auto 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.genre-pagination button {
+  min-height: 42px;
+
+  padding: 0 18px;
+
+  border: 1px solid #292930;
+
+  border-radius: 8px;
+
+  background: #15151c;
+
+  color: #fff;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.genre-pagination button:hover:not(:disabled) {
+  background: #24242d;
+}
+
+.genre-pagination button:disabled {
+  opacity: 0.35;
+
+  cursor: not-allowed;
+}
+
+.genre-pagination span {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #fff;
+
+  color: #0b0b0f;
+
+  font-weight: 700;
+}
+/* ==============================
+   GENRE PAGINATION
+============================== */
+
+.genre-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  margin-top: 50px;
+  padding-bottom: 60px;
+}
+
+.genre-pagination button {
+  min-width: 120px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid #292930;
+  border-radius: 10px;
+
+  background: #15151c;
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.genre-pagination button:hover:not(:disabled) {
+  background: #22222b;
+  transform: translateY(-2px);
+}
+
+.genre-pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.genre-page-number {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #d4af37;
+  color: #000;
+
+  font-weight: 700;
+}

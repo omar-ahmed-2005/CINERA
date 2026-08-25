@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# 🎬 CINERA — Live Movie Streaming & Admin Control Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://img.shields.io/badge/.NET-10.0-blueviolet?style=for-the-badge&logo=.net" alt=".NET 10.0" />
+  <img src="https://img.shields.io/badge/React-2026-blue?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/SQL--Server-2022-red?style=for-the-badge&logo=microsoft-sql-server" alt="SQL Server" />
+  <img src="https://img.shields.io/badge/JWT-Secure-orange?style=for-the-badge" alt="JWT Secure" />
+</p>
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📝 وصف المشروع (Project Overview)
+**CINERA** هي منصة سينمائية متكاملة لربط واجهات الـ Frontend التفاعلية بخدمات الـ Backend الحية وقاعدة بيانات **Microsoft SQL Server**. يوفر المشروع نظام حماية متكامل لتسجيل المستخدمين، التحقق الثنائي عبر البريد الإلكتروني الفعلي، إدارة الحسابات والتعليقات، وقائمة المشاهدة الشخصية، بالإضافة إلى لوحة تحكم إدارية كاملة (Admin Dashboard) لإدارة المحتوى.
 
-### `npm start`
+تم تصميم الكود البرمجي ليعمل بسلاسة فائقة ودون إحداث أي تغيير على التصميم أو الستايل الأصلي لواجهات الموقع إطلاقاً.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ المميزات الرئيسية (Core Features)
 
-### `npm test`
+### 🔒 نظام الحسابات والمصادقة (Authentication & Authorization)
+- **التسجيل الذكي على خطوتين**: إدخال البيانات الأساسية أولاً، ثم المطالبة برمز التحقق (Verification Code).
+- **التحقق من البريد الإلكتروني الحقيقي**: إرسال كود تحقق حركي مكون من 6 أرقام للبريد المسجّل بصلاحية 15 دقيقة، وفي نفس الوقت إخطار الإدارة بالتسجيل على إيميلها الخاص.
+- **تأمين البيانات بـ JWT**: تشفير الجلسات وإصدار توكن JWT وتخزينه لحماية مسارات الملف الشخصي ولوحة الإدارة.
+- **تشفير كلمات المرور**: استخدام خوارزمية PBKDF2 المدمجة الآمنة لعمل التشفير والمقارنة (Password Hashing).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📊 لوحة تحكم المدير (Admin Control Panel)
+- **إحصائيات حية**: عرض العدد الإجمالي للمستخدمين، الأفلام، والتعليقات المكتوبة مباشرة من قاعدة البيانات.
+- **إدارة المحتوى (CRUD)**: إمكانية جلب وإضافة وحذف الأفلام، حسابات المستخدمين، والمراجعات بشكل نهائي من قاعدة البيانات.
+- **تجميع التصنيفات (Dynamic Genres)**: تجميع وتحديث تصنيفات الأفلام (Genres) وإحصائياتها ديناميكياً بحسب الأفلام المتوفرة في قاعدة البيانات.
 
-### `npm run build`
+### 👤 بروفايل المستخدم (User Profile)
+- جلب وعرض بيانات المستخدم المسجل، وحالة التحقق من حسابه، وعدد الأفلام الموجودة في قائمة المشاهدة (Watchlist) الخاصة به حياً من قاعدة البيانات.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📂 الهيكل المجلد للمشروع (Project Structure)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+CINERA/
+│
+├── CINERA.csproj                # ملف إعدادات مشروع الـ Backend ومكتبات NuGet
+├── Program.cs                   # إعدادات حقن الاعتماديات، الـ JWT، الـ CORS، وتشغيل الـ API
+├── appsettings.json             # ملف الإعدادات العام (سلسلة الاتصال وبيانات الـ SMTP)
+│
+├── Data/
+│   ├── AppDbContext.cs          # سياق الاتصال بقاعدة البيانات وجداول SQL Server
+│   └── DbInitializer.cs         # بذر البيانات الافتراضية (18 فيلماً وحساب المدير)
+│
+├── Models/                      # النماذج البرمجية الخاصة بقاعدة البيانات والـ DTOs
+│   ├── User.cs, Movie.cs, Review.cs, WatchlistItem.cs
+│   └── Dtos/                    # نماذج نقل البيانات بين العميل والخادم (Register, Login, Verify, Stats)
+│
+├── Controllers/                 # نقاط النهاية (Endpoints) الخاصة بالـ API
+│   ├── AuthController.cs        # مسارات التوثيق والبروفايل والتفعيل
+│   └── AdminController.cs       # مسارات لوحة التحكم الإدارية
+│
+├── Services/                    # الخدمات المساعدة
+│   ├── IEmailService.cs         # واجهة إرسال البريد
+│   └── EmailService.cs          # تطبيق إرسال البريد الحقيقي عبر SMTP
+│
+└── CINERA.Frontend/             # مجلد واجهة المستخدم (React App)
+    ├── src/
+    │   ├── services/            # إدارة اتصالات Axios والـ APIs مع الـ Backend
+    │   │   ├── api.js           # الإعداد العام للـ Axios والتوكن
+    │   │   ├── auth.js          # خدمات المصادقة والتفعيل
+    │   │   └── admin.js         # خدمات لوحة الإدارة
+    │   └── pages/               # واجهات الاستخدام (تضمين الربط الحركي مع الحفاظ على التصميم)
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ متطلبات التشغيل (System Prerequisites)
+تأكد من تنصيب الأدوات التالية على نظامك قبل البدء:
+* **SDK .NET 10.0** أو أحدث.
+* **Node.js** (إصدار LTS المستقر).
+* **Microsoft SQL Server** (أو خادم SQL Server Express / LocalDB).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🚀 خطوات التثبيت والتشغيل بالتفصيل (Detailed Setup Guide)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 1️⃣ إعداد وتشغيل الخلفية البرمجية (Backend Web API)
 
-## Learn More
+1. افتح مشروع الـ Backend الرئيسي `CINERA` باستخدام **Visual Studio 2022**.
+2. افتح ملف `appsettings.json` وقم بتهيئة سلسلة الاتصال كالتالي:
+   ```json
+   "ConnectionStrings": {
+     "Default": "Server=.;Database=CineraDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true;"
+   }
+   ```
+3. قم بعمل **Build** للحل.
+4. اضغط على زر **Start / Run** في Visual Studio. 
+   - سيعمل الـ API على المنفذ المخصص `https://localhost:44309`.
+   - سيقوم الـ API تلقائياً بإنشاء قاعدة البيانات `CineraDb` وبناء الجداول بداخلها وبذر 18 فيلماً افتراضياً وحساب المدير عند أول إقلاع للمشروع.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 2️⃣ إعداد وتشغيل الواجهة الأمامية (React Frontend)
 
-### Code Splitting
+1. افتح نافذة Terminal أو سطر الأوامر وانتقل لمجلد الـ Frontend:
+   ```powershell
+   cd CINERA.Frontend
+   ```
+2. قم بتثبيت حزم المجلد والاعتماديات:
+   ```powershell
+   npm install
+   ```
+3. ابدأ تشغيل واجهة React:
+   ```powershell
+   npm start
+   ```
+4. سيفتح المتصفح تلقائياً على الرابط: `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🔑 حسابات التجربة والاختبار (Testing Credentials)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 🛡️ حساب المدير الافتراضي (Admin Account)
+يستخدم للولوج الكامل للوحة الإدارة لمشاهدة الإحصائيات وإدارة قاعدة البيانات:
+* **البريد الإلكتروني**: `admin@cinera.com`
+* **كلمة المرور**: `admin123`
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🎬 خاتمة (Conclusion)
 
-### Advanced Configuration
+تم بناء منصة **CINERA** كنموذج تطبيقي عملي متطور يجمع بين كفاءة وأداء بيئة عمل **.NET 10.0** ومرونة وسرعة مكتبة **React.js**. يمثل هذا المشروع تجربة مستخدم آمنة ومحمية بالكامل، تضمن لمديري النظام سهولة المتابعة والتحكم في المحتوى الترفيهي مع الحفاظ على سرعة واستقرار الاتصال بقاعدة البيانات. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+نتمنى لك تجربة ممتعة في تصفح وتطوير المنصة! 🚀
